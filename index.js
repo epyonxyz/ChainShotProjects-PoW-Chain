@@ -1,5 +1,5 @@
 const jayson = require('jayson');
-const {startMining, stopMining} = require('./mine');
+const {startMining, stopMining, startRandomTransactions, stopRandomTransactions} = require('./mine');
 const {PORT} = require('./config');
 const {utxos} = require('./db');
 
@@ -12,6 +12,14 @@ const server = jayson.server({
   stopMining: function(_, callback) {
     callback(null, 'success!');
     stopMining();
+  },
+  startRandomTransactions: function(_, callback) {
+    callback(null, 'success!');
+    startRandomTransactions();
+  },
+  stopRandomTransactions: function(_, callback) {
+    callback(null, 'success!');
+    stopRandomTransactions();
   },
   getBalance: function([address], callback) {
     const ourUTXOs = utxos.filter(x => {
